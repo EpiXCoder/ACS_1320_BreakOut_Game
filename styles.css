@@ -3,7 +3,7 @@
   margin: 0;
 }
 canvas {
-  background: #eee;
+  background: linear-gradient( rgb(175, 231, 233) , rgb(244, 244, 244));;
   display: block;
   margin: 0 auto;
 }

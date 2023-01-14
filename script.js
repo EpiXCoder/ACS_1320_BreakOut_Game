@@ -23,6 +23,7 @@ let brickColors = ['#ed4040', '#ed9640','#edd340', '#94ed40', '#40ed6e', '#40edc
 let ballColor = "#0095DD";
 
 
+
 const bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
   bricks[c] = [];
