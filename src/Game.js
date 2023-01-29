@@ -1,3 +1,8 @@
+import Ball from './Ball';
+import Bricks from './Bricks';
+import Sprite from './Sprite';
+import GameLabel from './GameLabel';
+
 class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
@@ -24,9 +29,14 @@ class Game {
     this.brickColors = ['#ed4040', '#ed9640', '#edd340', '#94ed40', '#40ed6e', '#40edc8', '#4091ed', '#3d42d1', '#9940ed', '#ed40d3'];
 
     this.ball = new Ball(0, 0, 2, -2, this.ballRadius, this.objectColor);
-    
-    this.paddle = new Sprite(this.paddleXStart, this.paddleYStart, this.paddleWidth, this.paddleHeight, this.objectColor);
- 
+
+    this.paddle = new Sprite(
+      this.paddleXStart,
+      this.paddleYStart,
+      this.paddleWidth,
+      this.paddleHeight,
+      this.objectColor,
+    );
     this.bricks = new Bricks({
       cols: this.brickColumnCount,
       rows: this.brickRowCount,
@@ -37,7 +47,7 @@ class Game {
       offsetTop: this.brickOffsetTop,
       color: this.brickColors,
     });
- 
+
     this.scoreLabel = new GameLabel('Score', 8, 20, this.objectColor);
     this.livesLabel = new GameLabel('Lives', this.canvas.width - 65, 20, this.objectColor);
     this.rightPressed = false;
@@ -184,3 +194,5 @@ class Game {
     requestAnimationFrame(this.draw.bind(this)); // FIX ME ********************************
   }
 }
+
+export default Game;
