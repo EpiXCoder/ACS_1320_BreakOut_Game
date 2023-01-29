@@ -1,8 +1,3 @@
-import Ball from './Ball';
-import Paddle from './Paddle';
-import Bricks from './Bricks';
-import GameLabel from './GameLabel';
-
 class Game {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
@@ -29,8 +24,9 @@ class Game {
     this.brickColors = ['#ed4040', '#ed9640', '#edd340', '#94ed40', '#40ed6e', '#40edc8', '#4091ed', '#3d42d1', '#9940ed', '#ed40d3'];
 
     this.ball = new Ball(0, 0, 2, -2, this.ballRadius, this.objectColor);
-    // eslint-disable-next-line max-len
-    this.paddle = new Paddle(this.paddleXStart, this.paddleYStart, this.paddleWidth, this.paddleHeight);
+    
+    this.paddle = new Sprite(this.paddleXStart, this.paddleYStart, this.paddleWidth, this.paddleHeight, this.objectColor);
+ 
     this.bricks = new Bricks({
       cols: this.brickColumnCount,
       rows: this.brickRowCount,
@@ -39,11 +35,11 @@ class Game {
       padding: this.brickPadding,
       offsetLeft: this.brickOffsetLeft,
       offsetTop: this.brickOffsetTop,
-      color: this.objectColor,
+      color: this.brickColors,
     });
-    // cols, rows, width, height, padding, offsetLeft, offsetTop, color
-    this.scoreLabel = new GameLabel('Score', 8, 20);
-    this.livesLabel = new GameLabel('Lives', this.canvas.width - 65, 20);
+ 
+    this.scoreLabel = new GameLabel('Score', 8, 20, this.objectColor);
+    this.livesLabel = new GameLabel('Lives', this.canvas.width - 65, 20, this.objectColor);
     this.rightPressed = false;
     this.leftPressed = false;
 
@@ -175,8 +171,8 @@ class Game {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.bricks.render(this.ctx);
     this.ball.render(this.ctx);
+    this.bricks.render(this.ctx);
     this.paddle.render(this.ctx);
     this.collisionDetection();
     this.scoreLabel.render(this.ctx);
@@ -188,5 +184,3 @@ class Game {
     requestAnimationFrame(this.draw.bind(this)); // FIX ME ********************************
   }
 }
-
-export default Game;

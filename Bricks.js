@@ -1,10 +1,5 @@
-import Brick from './Brick';
-
 class Bricks {
-  constructor(options) {
-    const {
-      cols, rows, width, height, padding, offsetLeft, offsetTop, color,
-    } = options;
+  constructor({cols, rows, width, height, padding, offsetLeft, offsetTop, color}) {
     this.cols = cols;
     this.rows = rows;
     this.bricks = [];
@@ -21,9 +16,9 @@ class Bricks {
     for (let c = 0; c < this.cols; c += 1) {
       this.bricks[c] = [];
       for (let r = 0; r < this.rows; r += 1) {
-        const brickX = c * (this.idth + this.padding) + this.offsetLeft;
+        const brickX = c * (this.width + this.padding) + this.offsetLeft;
         const brickY = r * (this.height + this.padding) + this.offsetTop;
-        this.bricks[c][r] = new Brick(brickX, brickY, this.width, this.height, this.color);
+        this.bricks[c][r] = new Brick(brickX, brickY, this.width, this.height, this.color[c]);
       }
     }
   }
@@ -39,5 +34,3 @@ class Bricks {
     }
   }
 }
-
-export default Bricks;

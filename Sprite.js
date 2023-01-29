@@ -1,5 +1,5 @@
 class Sprite {
-  constructor(x, y, width, height, color = 'red') {
+  constructor(x = 0, y = 0, width = 10, height = 10, color = '#0095DD') {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -22,7 +22,6 @@ class Sprite {
     ctx.rect(this.x, this.y, this.width, this.height);
     ctx.fillStyle = this.color;
     ctx.fill();
+    ctx.closePath();
   }
 }
-
-export default Sprite;
