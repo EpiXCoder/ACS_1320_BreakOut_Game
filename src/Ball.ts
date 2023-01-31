@@ -1,6 +1,14 @@
 import Sprite from './Sprite';
 
 class Ball extends Sprite {
+  dx: number;
+  dy: number;
+  radius: number;
+  PI2: number;
+  color: any;
+  y: any;
+  x: any;
+
   constructor(x = 0, y = 0, dx = 2, dy = -2, radius = 10, color = '#0095DD') {
     super(x, y, radius * 2, radius * 2, color);
 
@@ -11,7 +19,7 @@ class Ball extends Sprite {
     this.PI2 = Math.PI * 2;
   }
 
-  render(ctx) {
+  render(ctx: any) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, this.PI2);
     ctx.fillStyle = this.color;

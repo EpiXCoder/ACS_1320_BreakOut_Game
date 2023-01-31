@@ -4,9 +4,35 @@ import Sprite from './Sprite';
 import GameLabel from './GameLabel';
 
 class Game {
-  constructor(canvasId) {
-    this.canvas = document.getElementById(canvasId);
-    this.ctx = this.canvas.getContext('2d');
+  canvas: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  ballRadius: number;
+  paddleHeight: number;
+  paddleWidth: number;
+  brickRowCount: number;
+  brickColumnCount: number;
+  brickWidth: number;
+  brickHeight: number;
+  brickPadding: number;
+  brickOffsetTop: number;
+  brickOffsetLeft: number;
+  paddleXStart: number;
+  paddleYStart: number;
+  objectColor: string;
+  ballColor: any;
+  gameOverMessage: string;
+  gameWinMessage: string;
+  brickColors: string[];
+  ball: Ball;
+  paddle: Sprite;
+  bricks: Bricks;
+  scoreLabel: GameLabel;
+  livesLabel: GameLabel;
+  rightPressed: boolean;
+  leftPressed: boolean;
+  constructor(canvasId: string) {
+    this.canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+    this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
 
     this.ballRadius = 10;
     this.paddleHeight = 10;
@@ -156,7 +182,7 @@ class Game {
     }
   }
 
-  keyDownHandler(e) {
+  keyDownHandler(e: { key: string; }) {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
       this.rightPressed = true;
     } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
@@ -164,7 +190,7 @@ class Game {
     }
   }
 
-  keyUpHandler(e) {
+  keyUpHandler(e: { key: string; }) {
     if (e.key === 'Right' || e.key === 'ArrowRight') {
       this.rightPressed = false;
     } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
@@ -172,7 +198,7 @@ class Game {
     }
   }
 
-  mouseMoveHandler(e) {
+  mouseMoveHandler(e: { clientX: number; }) {
     const relativeX = e.clientX - this.canvas.offsetLeft;
     if (relativeX > 0 && relativeX < this.canvas.width) {
       this.paddle.moveTo(relativeX - this.paddle.width / 2, this.paddleYStart);
