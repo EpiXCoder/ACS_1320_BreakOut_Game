@@ -28,7 +28,7 @@ class Game {
 
     this.brickColors = ['#ed4040', '#ed9640', '#edd340', '#94ed40', '#40ed6e', '#40edc8', '#4091ed', '#3d42d1', '#9940ed', '#ed40d3'];
 
-    this.ball = new Ball(0, 0, 2, -2, this.ballRadius, this.objectColor);
+    this.ball = new Ball(0, 0, 2, -2, this.ballRadius, this.ballColor);
 
     this.paddle = new Sprite(
       this.paddleXStart,
@@ -94,7 +94,7 @@ class Game {
             // For example, hitting first row row from the bottom scores the player 1 point,
             // second row scores 2 points 3rd row scores 3 points etc.
             this.scoreLabel.value += (5 - r);
-            this.ballColor = this.getRandomColor();
+            this.ball.color = this.getRandomColor();
             if (this.scoreLabel.value === 15 * this.bricks.cols) {
               // eslint-disable-next-line no-alert
               alert(this.gameWinMessage);
@@ -146,8 +146,8 @@ class Game {
         if (this.livesLabel.value < 1) {
           // eslint-disable-next-line no-alert
           alert(this.gameOverMessage);
-          // ball.x = 200;
-          // ball.y = 200;
+          this.ball.x = 200;
+          this.ball.y = 200;
           document.location.reload();
         } else {
           this.resetBallAndPaddle();
